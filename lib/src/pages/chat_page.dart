@@ -1,10 +1,10 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatgpt/models/model.dart';
-import 'package:chatgpt/providers/get_message_provider.dart';
-import 'package:chatgpt/providers/get_models_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/chat.dart';
+import '../../network/api_services.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -15,7 +15,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatPageState extends State<ChatPage> {
   String messagePrompt = '';
-  int tokenValue = 1;
+  int tokenValue = 500;
   List<Chat> chatList = [];
   List<Model> modelsList = [];
   late SharedPreferences prefs;
@@ -50,7 +50,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo,
+      backgroundColor: const Color(0xFF292B4D),
       body: SafeArea(
         child: Stack(
           children: [
@@ -136,7 +136,6 @@ class _ChatPageState extends State<ChatPage> {
                           Divider(
                             color: Colors.grey.shade700,
                           ),
-
                           Padding(
                             padding: const EdgeInsets.fromLTRB(20, 2, 20, 2),
                             child: DropdownButtonFormField(
@@ -167,16 +166,6 @@ class _ChatPageState extends State<ChatPage> {
                               });
                             },
                           ),
-                          // const Padding(
-                          //   padding: EdgeInsets.symmetric(vertical: 20.0),
-                          //   child: Text(
-                          //     'Are you sure you want to log out?',
-                          //     style: TextStyle(
-                          //       color: Colors.black,
-                          //       fontWeight: FontWeight.bold,
-                          //     ),
-                          //   ),
-                          // ),
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10.0),
                             child: Row(
@@ -315,10 +304,31 @@ class _ChatPageState extends State<ChatPage> {
                       bottomRight: Radius.circular(10),
                     ),
             ),
-            child: Text(message),
+            child: chatWidget(message),
           ),
         ),
       ],
+    );
+  }
+
+  Widget chatWidget(String text) {
+    return SizedBox(
+      width: 250.0,
+      child: DefaultTextStyle(
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 16,
+        ),
+        child: AnimatedTextKit(
+          animatedTexts: [
+            TyperAnimatedText(
+              text.replaceFirst('\n\n', ''),
+            ),
+          ],
+          repeatForever: false,
+          totalRepeatCount: 1,
+        ),
+      ),
     );
   }
 
@@ -350,7 +360,7 @@ class _ChatPageState extends State<ChatPage> {
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Colors.indigo),
+                      color: const Color(0xFF292B4D)),
                   padding: const EdgeInsets.all(14),
                   child: const Icon(
                     Icons.send_rounded,

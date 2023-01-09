@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:chatgpt/providers/admob_service_helper.dart';
+import 'package:chatgpt/network/admob_service_helper.dart';
 import 'package:chatgpt/src/pages/chat_page.dart';
 import 'package:chatgpt/src/pages/dalle_page.dart';
 import 'package:flutter/material.dart';
