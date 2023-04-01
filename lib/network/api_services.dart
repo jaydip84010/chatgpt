@@ -12,14 +12,14 @@ import '../utils/constants.dart';
 import 'error_message.dart';
 import 'network_client.dart';
 
-Future<List<Images>> submitGetImagesForm({
+Future<List<Imagesmodel>> submitGetImagesForm({
   required BuildContext context,
   required String prompt,
   required int n,
 }) async {
   //
   NetworkClient networkClient = NetworkClient();
-  List<Images> imagesList = [];
+  List<Imagesmodel> imagesList = [];
   try {
     final res = await networkClient.post(
       '${BASE_URL}images/generations',
@@ -30,20 +30,20 @@ Future<List<Images>> submitGetImagesForm({
     debugPrint(mp.toString());
     if (mp['data'].length > 0) {
       imagesList = List.generate(mp['data'].length, (i) {
-        return Images.fromJson(<String, dynamic>{
+        return Imagesmodel.fromJson(<String, dynamic>{
           'url': mp['data'][i]['url'],
         });
       });
       debugPrint(imagesList.toString());
     }
-  } on RemoteException catch (e) {
+  } on RemoteDataException catch (e) {
     Logger().e(e.dioError);
     errorMessage(context);
   }
   return imagesList;
 }
 
-Future<List<Chat>> submitGetChatsForm({
+Future<List<Chatmodel>> submitGetChatsForm({
   required BuildContext context,
   required String prompt,
   required int tokenValue,
@@ -51,7 +51,7 @@ Future<List<Chat>> submitGetChatsForm({
 }) async {
   //
   NetworkClient networkClient = NetworkClient();
-  List<Chat> chatList = [];
+  List<Chatmodel> chatList = [];
   try {
     final res = await networkClient.post(
       "${BASE_URL}completions",
@@ -67,14 +67,14 @@ Future<List<Chat>> submitGetChatsForm({
     debugPrint(mp.toString());
     if (mp['choices'].length > 0) {
       chatList = List.generate(mp['choices'].length, (i) {
-        return Chat.fromJson(<String, dynamic>{
+        return Chatmodel.fromJson(<String, dynamic>{
           'msg': mp['choices'][i]['text'],
           'chat': 1,
         });
       });
       debugPrint(chatList.toString());
     }
-  } on RemoteException catch (e) {
+  } on RemoteDataException catch (e) {
     Logger().e(e.dioError);
     errorMessage(context);
   }
@@ -104,7 +104,7 @@ Future<List<Model>> submitGetModelsForm({
       });
       debugPrint(modelsList.toString());
     }
-  } on RemoteException catch (e) {
+  } on RemoteDataException catch (e) {
     Logger().e(e.dioError);
     errorMessage(context);
   }

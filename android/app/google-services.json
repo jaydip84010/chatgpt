@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "546622202665",
+    "project_id": "chatgpt-c39fd",
+    "storage_bucket": "chatgpt-c39fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546622202665:android:5bed6b13ac1290918f0d38",
+        "android_client_info": {
+          "package_name": "com.chatgpt.ai.chat.gpt.bot.chatgpt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546622202665-3pvknla627i1tmae2unthlum23de5m81.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chatgpt.ai.chat.gpt.bot.chatgpt",
+            "certificate_hash": "7b66daeffca5fc4073c087bbd257a00214e90f53"
+          }
+        },
+        {
+          "client_id": "546622202665-ubum1dqj9r5jpmr7d7velvg5h20v4r9m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGlyrbcSBi69sjAbLBXlqqh3syVyvlytM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546622202665-ubum1dqj9r5jpmr7d7velvg5h20v4r9m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

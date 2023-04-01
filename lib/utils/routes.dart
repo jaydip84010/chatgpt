@@ -1,23 +1,23 @@
-import 'package:chatgpt/src/pages/chat_page.dart';
-import 'package:chatgpt/src/pages/dalle_page.dart';
+import 'package:chatgpt/src/screen/chat_screen.dart';
+import 'package:chatgpt/src/screen/dalle_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../errors/exceptions.dart';
 
-class RouteGenerator {
+class RouteGeneratorService {
   static const String dalle = 'dalle';
   static const String chat = 'chat';
-  RouteGenerator._();
+  RouteGeneratorService._();
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case dalle:
-        return MaterialPageRoute(builder: (_) => const DallePage());
+        return MaterialPageRoute(builder: (_) => const DalleImgScreen());
       case chat:
-        return MaterialPageRoute(builder: (_) => const ChatPage());
+        return MaterialPageRoute(builder: (_) => const ChatScreen());
 
       default:
-        throw RouteException('Route not found');
+        throw RouteDataException('Route not found');
     }
   }
 }

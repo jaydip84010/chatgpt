@@ -38,7 +38,7 @@ class NetworkClient {
             headers: map,
           ));
     } on DioError catch (exception) {
-      throw RemoteException(dioError: exception);
+      throw RemoteDataException(dioError: exception);
     }
     return response;
   }
@@ -60,7 +60,7 @@ class NetworkClient {
             validateStatus: (_) => true,
           ));
     } on DioError catch (exception) {
-      throw RemoteException(dioError: exception);
+      throw RemoteDataException(dioError: exception);
     }
     return response;
   }
@@ -82,7 +82,7 @@ class NetworkClient {
             validateStatus: (_) => true,
           ));
     } on DioError catch (exception) {
-      throw RemoteException(dioError: exception);
+      throw RemoteDataException(dioError: exception);
     }
     return response;
   }
@@ -97,7 +97,7 @@ class NetworkClient {
             responseType: ResponseType.json,
           ));
     } on DioError catch (exception) {
-      throw RemoteException(dioError: exception);
+      throw RemoteDataException(dioError: exception);
     }
     return response;
   }
@@ -113,7 +113,7 @@ class NetworkClient {
         onReceiveProgress: onReceiveProgress,
       );
     } on DioError catch (exception) {
-      throw RemoteException(dioError: exception);
+      throw RemoteDataException(dioError: exception);
     }
     return response;
   }
@@ -128,7 +128,7 @@ class NetworkClient {
             responseType: ResponseType.json,
           ));
     } on DioError catch (exception) {
-      throw RemoteException(dioError: exception);
+      throw RemoteDataException(dioError: exception);
     }
     return response;
   }

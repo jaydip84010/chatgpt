@@ -1,20 +1,20 @@
 import 'package:dio/dio.dart';
 
 // Represent exceptions from Server/Remote data source.
-class RemoteException implements Exception {
+class RemoteDataException implements Exception {
   DioError dioError;
 
-  RemoteException({required this.dioError});
+  RemoteDataException({required this.dioError});
 }
 
 // Represent exceptions from Cache.
-class LocalException implements Exception {
+class LocalDataException implements Exception {
   String error;
 
-  LocalException(this.error);
+  LocalDataException(this.error);
 }
 
-class RouteException implements Exception {
+class RouteDataException implements Exception {
   final String message;
-  RouteException(this.message);
+  RouteDataException(this.message);
 }

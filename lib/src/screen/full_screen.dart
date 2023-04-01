@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:image_downloader/image_downloader.dart';
+// import 'package:image_downloader/image_downloader.dart';
 
 class ImageView extends StatefulWidget {
   final String imgPath;
@@ -39,7 +39,7 @@ class _ImageViewState extends State<ImageView> {
               children: <Widget>[
                 InkWell(
                     onTap: () async {
-                      await ImageDownloader.downloadImage(widget.imgPath);
+                      // await ImageDownloader.downloadImage(widget.imgPath);
                     },
                     child: Stack(
                       children: <Widget>[

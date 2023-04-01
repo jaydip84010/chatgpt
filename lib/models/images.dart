@@ -1,11 +1,11 @@
-class Images {
+class Imagesmodel {
   final String url;
 
-  Images({
+  Imagesmodel({
     required this.url,
   });
 
-  factory Images.fromJson(Map<String, dynamic> json) => Images(
+  factory Imagesmodel.fromJson(Map<String, dynamic> json) => Imagesmodel(
         url: json['url'],
       );
 }
