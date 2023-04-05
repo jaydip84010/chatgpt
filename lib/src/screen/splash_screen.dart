@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:chatgpt/main.dart';
 import 'package:chatgpt/network/remote_config_helper.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   int maxFailedLoadAttempts = 3;
-
   AdHelper adHelper = AdHelper();
   final BannerAd myBanner = BannerAd(
     adUnitId: AdHelper.bannerAdUnitId ?? '',
@@ -30,14 +30,15 @@ class _SplashScreenState extends State<SplashScreen> {
   bool visible = true;
   bool? isvisible;
 
-  RemoteConfigHelper configHelper = RemoteConfigHelper();
-  bool? adshow ;
+  RemoteConfigHelper configHelper = RemoteConfigHelper(remoteConfig: remoteConfig);
+  bool? adshow;
+
   connectcheck() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     print(connectivityResult);
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
-        adHelper.nativshowad();
+      adHelper.nativshowad();
       Future.delayed(const Duration(seconds: 7), () {
         adHelper.showAdIfAvailable();
         Timer(Duration(seconds: 5), () {
@@ -62,10 +63,10 @@ class _SplashScreenState extends State<SplashScreen> {
     configHelper.setupRemoteConfig();
     adshow = configHelper.remoteConfig.getBool('isshowads');
     Future.delayed(const Duration(seconds: 7), () {
-       if(adshow==true){
-         adHelper.loadAd();
-         adHelper.showAdIfAvailable();
-       }
+      if (adshow == true) {
+        adHelper.loadAd();
+        adHelper.showAdIfAvailable();
+      }
       Timer(Duration(seconds: 5), () {
         setState(() {
           visible = false;
@@ -106,19 +107,20 @@ class _SplashScreenState extends State<SplashScreen> {
                         fit: BoxFit.fill,
                       ),
                     ),
-                    adshow==true?
-                    Container(
-                        height: MediaQuery.of(context).size.height / 2.7,
-                        width: MediaQuery.of(context).size.width / 1.00,
-                        color: Colors.white,
-                        child: adHelper.native != null
-                            ? AdWidget(
-                          ad: adHelper.native!,
-                        )
-                            : customnative()
-                    ):Container( height: MediaQuery.of(context).size.height / 2.7,
-                      width: MediaQuery.of(context).size.width / 1.00,),
-
+                    adshow == true
+                        ? Container(
+                            height: MediaQuery.of(context).size.height / 2.7,
+                            width: MediaQuery.of(context).size.width / 1.00,
+                            color: Colors.white,
+                            child: adHelper.native != null
+                                ? AdWidget(
+                                    ad: adHelper.native!,
+                                  )
+                                : customnative())
+                        : Container(
+                            height: MediaQuery.of(context).size.height / 2.7,
+                            width: MediaQuery.of(context).size.width / 1.00,
+                          ),
                     SizedBox(
                       height: 40,
                     ),

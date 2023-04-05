@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:chatgpt/main.dart';
 import 'package:chatgpt/network/remote_config_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -33,7 +34,7 @@ class _DalleImgScreenState extends State<DalleImgScreen> {
     request: const AdRequest(),
     listener: const BannerAdListener(),
   );
-  RemoteConfigHelper configHelper = RemoteConfigHelper();
+  RemoteConfigHelper configHelper = RemoteConfigHelper(remoteConfig: remoteConfig);
   bool? adshow;
 
   @override

@@ -1,5 +1,7 @@
 import 'dart:io' show Platform;
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import '../utils/constants.dart';
 
 class AdHelper {
@@ -8,6 +10,7 @@ class AdHelper {
   NativeAd? native;
   static bool isLoaded = false;
   RewardedAd? rewardedAd;
+
   static String? get bannerAdUnitId {
     if (Platform.isAndroid) {
       return ANDROID_BANNER_ADD_ID;

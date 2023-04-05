@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:chatgpt/main.dart';
 import 'package:chatgpt/network/adhelper.dart';
 import 'package:chatgpt/network/remote_config_helper.dart';
 import 'package:chatgpt/src/screen/chat_screen.dart';
@@ -30,7 +31,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
     request: const AdRequest(),
     listener: const BannerAdListener(),
   );
-  RemoteConfigHelper configHelper = RemoteConfigHelper();
+  RemoteConfigHelper configHelper = RemoteConfigHelper(remoteConfig: remoteConfig);
   bool? adshow;
 
   void _createInterstitialAd() {
@@ -166,24 +167,24 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   SizedBox(
                     height: 100,
                   ),
+                  adshow == true
+                      ? Container(
+                      height: MediaQuery.of(context).size.height / 2.7,
+                      width: MediaQuery.of(context).size.width / 1.00,
+                      color: Colors.white,
+                      child: adHelper.native != null
+                          ? AdWidget(
+                        ad: adHelper.native!,
+                      )
+                          : customnative())
+                      : Container(
+                    height: MediaQuery.of(context).size.height / 2.7,
+                    width: MediaQuery.of(context).size.width / 1.00,
+                  ),
                 ],
               ),
             ),
           ],
-        ),
-        bottomNavigationBar: adshow == true
-            ? Container(
-            height: MediaQuery.of(context).size.height / 2.7,
-            width: MediaQuery.of(context).size.width / 1.00,
-            color: Colors.white,
-            child: adHelper.native != null
-                ? AdWidget(
-              ad: adHelper.native!,
-            )
-                : customnative())
-            : Container(
-          height: MediaQuery.of(context).size.height / 2.7,
-          width: MediaQuery.of(context).size.width / 1.00,
         ),
       ),
     );

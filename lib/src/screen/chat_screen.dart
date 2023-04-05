@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:chatgpt/main.dart';
 import 'package:chatgpt/models/model.dart';
 import 'package:chatgpt/network/remote_config_helper.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _ChatScreenState extends State<ChatScreen> {
   int _maxsearch = 4;
   AdHelper adhelper = AdHelper();
 
-  RemoteConfigHelper configHelper = RemoteConfigHelper();
+  RemoteConfigHelper configHelper = RemoteConfigHelper(remoteConfig: remoteConfig);
   bool? adshow;
 
   @override
@@ -257,7 +258,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     });
                     print(_maxsearch);
                     if (_maxsearch == 0) {
-                      if(adshow==true){
+                      if (adshow == true) {
                         adhelper.showreward();
                       }
 
